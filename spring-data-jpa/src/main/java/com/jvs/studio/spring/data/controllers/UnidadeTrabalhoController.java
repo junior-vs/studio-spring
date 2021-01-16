@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jvs.studio.spring.data.orm.model.UnidadeTrabalho;
 import com.jvs.studio.spring.data.services.UnidadeTrabalhoService;
-import com.jvs.studio.spring.data.vo.requests.UnidadeTrabalhoVO;
+import com.jvs.studio.spring.data.vo.UnidadeTrabalhoVO;
 
 @RestController
 @RequestMapping("/unidade-trabalho")

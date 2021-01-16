@@ -1,4 +1,4 @@
-package com.jvs.studio.spring.data.vo.requests;
+package com.jvs.studio.spring.data.vo;
 
 import javax.validation.constraints.NotBlank;
 
