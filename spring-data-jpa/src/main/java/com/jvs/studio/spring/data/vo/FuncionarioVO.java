@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.lang.NonNull;
@@ -18,22 +19,24 @@ public class FuncionarioVO {
 	private String nome;
 
 	@NotBlank
-	@CPF
+	//@CPF
 	private String cpf;
 
 	@NonNull
 	private BigDecimal salario;
 
 	@NonNull
-	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate dtContratacao;
 
+	@NotNull
 	private Integer idCargo;
 
+	@NotNull
 	private Integer idUnidadeTrabalho;
 
 	public FuncionarioVO(@NotBlank String nome, @NotBlank @CPF String cpf, BigDecimal salario, LocalDate dtContratacao,
-			Integer idCargo, Integer idUnidadeTrabalho) {
+			@NotNull Integer idCargo, @NotNull Integer idUnidadeTrabalho) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;

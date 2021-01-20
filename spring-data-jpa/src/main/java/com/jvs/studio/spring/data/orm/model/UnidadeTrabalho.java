@@ -17,7 +17,7 @@ public class UnidadeTrabalho {
   private String descricao;
   private String endereco;
 
-  @ManyToMany(mappedBy = "unidadeTrabalhos", fetch = FetchType.EAGER)
+  @ManyToMany(mappedBy = "unidadeTrabalhos", fetch = FetchType.LAZY)
   private List<Funcionario> funcionarios;
 
   public UnidadeTrabalho() {
@@ -62,6 +62,13 @@ public class UnidadeTrabalho {
     this.funcionarios = funcionarios;
   }
 
+@Override
+public String toString() {
+	return "UnidadeTrabalho [id=" + id + ", descricao=" + descricao + ", endereco=" + endereco + ", funcionarios="
+			+ funcionarios + "]";
+}
+
+  
 
 
 }

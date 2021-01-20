@@ -3,6 +3,7 @@ package com.jvs.studio.spring.data.orm.model;
 import static javax.persistence.GenerationType.IDENTITY;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -55,7 +56,7 @@ public class Funcionario {
 		this.salario = salario;
 		this.dtContratacao = dtContratacao;
 		this.cargo = cargo;
-		this.unidadeTrabalhos.add(unidadeTrabalhos);
+		addUnidadeTrabalhos(unidadeTrabalhos);
 	}
 
 	public void setId(Integer id) {
@@ -111,7 +112,15 @@ public class Funcionario {
 	}
 
 	public void setUnidadeTrabalhos(List<UnidadeTrabalho> unidadeTrabalhos) {
+		if (this.unidadeTrabalhos == null)
+			this.unidadeTrabalhos = new ArrayList<UnidadeTrabalho>();
 		this.unidadeTrabalhos = unidadeTrabalhos;
+	}
+
+	public void addUnidadeTrabalhos(UnidadeTrabalho unidadeTrabalho) {
+		if (this.unidadeTrabalhos == null)
+			this.unidadeTrabalhos = new ArrayList<UnidadeTrabalho>();
+		this.unidadeTrabalhos.add(unidadeTrabalho);
 	}
 
 	@Override

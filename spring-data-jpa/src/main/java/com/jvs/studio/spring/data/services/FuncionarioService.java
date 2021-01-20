@@ -10,16 +10,16 @@ import javax.persistence.PersistenceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.jvs.studio.spring.data.orm.model.Cargo;
 import com.jvs.studio.spring.data.orm.model.Funcionario;
 import com.jvs.studio.spring.data.orm.model.UnidadeTrabalho;
 import com.jvs.studio.spring.data.repositories.FuncionarioRepository;
+import com.jvs.studio.spring.data.specification.FuncionarioSpecification;
 import com.jvs.studio.spring.data.vo.FuncionarioVO;
 import com.jvs.studio.spring.data.vo.FuncionarioVOResponse;
-
-import javassist.NotFoundException;
 
 @Service
 public class FuncionarioService {
@@ -45,7 +45,10 @@ public class FuncionarioService {
 		Funcionario found = repository.findById(id).orElseThrow();
 
 		Cargo cargo = manager.find(Cargo.class, vo.getIdCargo());
+		log.info("{}", cargo);
 		UnidadeTrabalho unidadeTrabalho = manager.find(UnidadeTrabalho.class, vo.getIdUnidadeTrabalho());
+
+		log.info("{}", unidadeTrabalho);
 
 		if (cargo == null || unidadeTrabalho == null)
 			throw new NoSuchElementException("Cargo ou Unidade de Tralbalho não encontado");
@@ -62,8 +65,11 @@ public class FuncionarioService {
 	}
 
 	public FuncionarioVOResponse salvar(FuncionarioVO vo) {
+		log.info("{}", vo);
 		Cargo cargo = manager.find(Cargo.class, vo.getIdCargo());
+		log.info("{}", cargo);
 		UnidadeTrabalho unidadeTrabalho = manager.find(UnidadeTrabalho.class, vo.getIdUnidadeTrabalho());
+		log.info("{}", unidadeTrabalho);
 
 		Funcionario novoFuncionario = new Funcionario(vo.getNome(), vo.getCpf(), vo.getSalario(), vo.getDtContratacao(),
 				cargo, unidadeTrabalho);
@@ -71,5 +77,15 @@ public class FuncionarioService {
 		repository.save(novoFuncionario);
 
 		return new FuncionarioVOResponse(novoFuncionario);
+	}
+
+	public List<FuncionarioVOResponse> buscarPorNome(String nome) {
+		
+		List<Funcionario> listFuncionarios = repository.findAll(Specification.where(FuncionarioSpecification.nome(nome)));
+		
+		return listFuncionarios.stream().map(FuncionarioVOResponse::new).collect(Collectors.toList());
+				
+				//stream().map(FuncionarioVOResponse::new).collect(Collectors.toList());
+		
 	}
 }
