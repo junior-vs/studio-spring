@@ -1,4 +1,4 @@
-package com.vsj.northwind.persistence.model;
+package com.vsj.northwind.data.model;
 
 import java.io.Serializable;
 import javax.persistence.*;

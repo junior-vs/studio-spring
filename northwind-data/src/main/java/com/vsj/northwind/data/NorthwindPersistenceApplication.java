@@ -1,4 +1,4 @@
-package com.vsj.northwind.persistence;
+package com.vsj.northwind.data;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

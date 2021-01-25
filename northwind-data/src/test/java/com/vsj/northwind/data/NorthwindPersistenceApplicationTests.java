@@ -1,4 +1,4 @@
-package com.vsj.northwind.persistence;
+package com.vsj.northwind.data;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

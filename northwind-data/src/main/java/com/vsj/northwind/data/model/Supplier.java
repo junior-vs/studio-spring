@@ -1,4 +1,4 @@
-package com.vsj.northwind.persistence.model;
+package com.vsj.northwind.data.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -6,18 +6,18 @@ import java.util.List;
 
 
 /**
- * The persistent class for the customers database table.
+ * The persistent class for the suppliers database table.
  * 
  */
 @Entity
-@Table(name="customers")
-@NamedQuery(name="Customer.findAll", query="SELECT c FROM Customer c")
-public class Customer implements Serializable {
+@Table(name="suppliers")
+@NamedQuery(name="Supplier.findAll", query="SELECT s FROM Supplier s")
+public class Supplier implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="customer_id", unique=true, nullable=false, length=2147483647)
-	private String customerId;
+	@Column(name="supplier_id", unique=true, nullable=false)
+	private Integer supplierId;
 
 	@Column(length=60)
 	private String address;
@@ -40,6 +40,9 @@ public class Customer implements Serializable {
 	@Column(length=24)
 	private String fax;
 
+	@Column(length=2147483647)
+	private String homepage;
+
 	@Column(length=24)
 	private String phone;
 
@@ -49,32 +52,19 @@ public class Customer implements Serializable {
 	@Column(length=15)
 	private String region;
 
-	//bi-directional many-to-many association to CustomerDemographic
-	@ManyToMany
-	@JoinTable(
-		name="customer_customer_demo"
-		, joinColumns={
-			@JoinColumn(name="customer_id", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="customer_type_id", nullable=false)
-			}
-		)
-	private List<CustomerDemographic> customerDemographics;
+	//bi-directional many-to-one association to Product
+	@OneToMany(mappedBy="supplier")
+	private List<Product> products;
 
-	//bi-directional many-to-one association to Order
-	@OneToMany(mappedBy="customer")
-	private List<Order> orders;
-
-	public Customer() {
+	public Supplier() {
 	}
 
-	public String getCustomerId() {
-		return this.customerId;
+	public Integer getSupplierId() {
+		return this.supplierId;
 	}
 
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
+	public void setSupplierId(Integer supplierId) {
+		this.supplierId = supplierId;
 	}
 
 	public String getAddress() {
@@ -133,6 +123,14 @@ public class Customer implements Serializable {
 		this.fax = fax;
 	}
 
+	public String getHomepage() {
+		return this.homepage;
+	}
+
+	public void setHomepage(String homepage) {
+		this.homepage = homepage;
+	}
+
 	public String getPhone() {
 		return this.phone;
 	}
@@ -157,34 +155,26 @@ public class Customer implements Serializable {
 		this.region = region;
 	}
 
-	public List<CustomerDemographic> getCustomerDemographics() {
-		return this.customerDemographics;
+	public List<Product> getProducts() {
+		return this.products;
 	}
 
-	public void setCustomerDemographics(List<CustomerDemographic> customerDemographics) {
-		this.customerDemographics = customerDemographics;
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 
-	public List<Order> getOrders() {
-		return this.orders;
+	public Product addProduct(Product product) {
+		getProducts().add(product);
+		product.setSupplier(this);
+
+		return product;
 	}
 
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
+	public Product removeProduct(Product product) {
+		getProducts().remove(product);
+		product.setSupplier(null);
 
-	public Order addOrder(Order order) {
-		getOrders().add(order);
-		order.setCustomer(this);
-
-		return order;
-	}
-
-	public Order removeOrder(Order order) {
-		getOrders().remove(order);
-		order.setCustomer(null);
-
-		return order;
+		return product;
 	}
 
 }
