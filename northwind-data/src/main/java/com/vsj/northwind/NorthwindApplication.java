@@ -1,13 +1,13 @@
-package com.vsj.northwind.data;
+package com.vsj.northwind;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NorthwindPersistenceApplication {
+public class NorthwindApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NorthwindPersistenceApplication.class, args);
+		SpringApplication.run(NorthwindApplication.class, args);
 	}
 
 }

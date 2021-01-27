@@ -1,7 +1,10 @@
-package com.vsj.northwind.data.controllers;
+package com.vsj.northwind.controllers;
 
-import com.vsj.northwind.data.ddd.vos.CategoryVO;
-import com.vsj.northwind.data.services.CategoriesService;
+import java.util.List;
+
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,12 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-import javax.validation.Valid;
-
-import java.util.List;
+import com.vsj.northwind.services.ProductsService;
+import com.vsj.northwind.vos.ProductVO;
 
 /**
  * Create[ok]; Reade (All[ok]/One[ok] /Pagination[]) Update[ok] Delele (
@@ -28,48 +27,44 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/categories")
-public class CategoryController {
-
-	@PersistenceContext
-	private EntityManager manager;
+@RequestMapping("/products")
+public class ProductController {
 
 	@Autowired
-	private CategoriesService service;
+	private ProductsService service;
 
 	@GetMapping
-	public ResponseEntity<List<CategoryVO>> listaCategoria() {
-		List<CategoryVO> voList = service.listAll();
+	public ResponseEntity<List<ProductVO>> listaCategoria() {
+		List<ProductVO> voList = service.listAll();
 		return ResponseEntity.ok(voList);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<CategoryVO> findByid(@PathVariable("id") Integer id) {
+	public ResponseEntity<ProductVO> findByid(@PathVariable("id") Integer id) {
 		return ResponseEntity.ok(service.findByID(id));
 	}
 
 	@GetMapping("/by")
-	public ResponseEntity<CategoryVO> findByid(@RequestParam String name) {
+	public ResponseEntity<ProductVO> findByid(@RequestParam String name) {
 		return ResponseEntity.ok(service.findByName(name));
 	}
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity<CategoryVO> createCategory(@Valid @RequestBody CategoryVO category) {
-		return ResponseEntity.ok(service.createCategory(category));
+	public ResponseEntity<ProductVO> createCategory(@Valid @RequestBody ProductVO vo) {
+		return ResponseEntity.ok(service.create(vo));
 	}
 
 	@PutMapping("{id}")
 	@Transactional
-	public ResponseEntity<CategoryVO> updateCategory(@Valid @RequestBody CategoryVO category,
-			@PathVariable("id") Integer id) {
-		return ResponseEntity.ok(service.updateCategory(category, id));
+	public ResponseEntity<ProductVO> updateCategory(@Valid @RequestBody ProductVO vo, @PathVariable("id") Integer id) {
+		return ResponseEntity.ok(service.update(vo, id));
 	}
 
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<?> deleteCategory(@PathVariable("id") Integer id) {
-		service.deleteCategory(id);
+		service.delete(id);
 		return ResponseEntity.ok().build();
 	}
 

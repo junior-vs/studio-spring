@@ -1,4 +1,4 @@
-package com.vsj.northwind.data.ddd.vos;
+package com.vsj.northwind.vos;
 
 import javax.validation.constraints.NotBlank;
 

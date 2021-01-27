@@ -1,4 +1,4 @@
-package com.vsj.northwind.data.services;
+package com.vsj.northwind.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vsj.northwind.data.ddd.vos.CategoryVO;
 import com.vsj.northwind.data.model.Category;
 import com.vsj.northwind.data.repositories.CategoriesRepository;
+import com.vsj.northwind.vos.CategoryVO;
 
 @Service
 public class CategoriesService {

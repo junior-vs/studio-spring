@@ -4,58 +4,76 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the products database table.
  * 
  */
 @Entity
-@Table(name="products")
-@NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")
+@Table(name = "products")
+@NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="product_id", unique=true, nullable=false)
+	@Column(name = "product_id", unique = true, nullable = false)
+	@SequenceGenerator(name = "PRODUCT_SEQ_GENERATOR", sequenceName = "PRODUCT_SEQ_GENERATOR", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCT_SEQ_GENERATOR")
 	private Integer productId;
 
-	@Column(nullable=false)
-	private Integer discontinued;
+	@Column(nullable = false)
+	private Boolean discontinued;
 
-	@Column(name="product_name", nullable=false, length=40)
+	@Column(name = "product_name", nullable = false, length = 40)
 	private String productName;
 
-	@Column(name="quantity_per_unit", length=20)
+	@Column(name = "quantity_per_unit", length = 20)
 	private String quantityPerUnit;
 
-	@Column(name="reorder_level")
+	@Column(name = "reorder_level")
 	private Integer reorderLevel;
 
-	@Column(name="unit_price")
+	@Column(name = "unit_price")
 	private float unitPrice;
 
-	@Column(name="units_in_stock")
+	@Column(name = "units_in_stock")
 	private Integer unitsInStock;
 
-	@Column(name="units_on_order")
+	@Column(name = "units_on_order")
 	private Integer unitsOnOrder;
 
-	//bi-directional many-to-one association to OrderDetail
-	@OneToMany(mappedBy="product")
+	// bi-directional many-to-one association to OrderDetail
+	@OneToMany(mappedBy = "product")
 	private List<OrderDetail> orderDetails;
 
-	//bi-directional many-to-one association to Category
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="category_id")
+	// bi-directional many-to-one association to Category
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_id")
 	private Category category;
 
-	//bi-directional many-to-one association to Supplier
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="supplier_id")
+	// bi-directional many-to-one association to Supplier
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "supplier_id")
 	private Supplier supplier;
 
 	public Product() {
 	}
+	
+	
+
+	public Product(Integer productId, Boolean discontinued, String productName, String quantityPerUnit,
+			Integer reorderLevel, float unitPrice, Integer unitsInStock, Integer unitsOnOrder){
+		super();
+		this.productId = productId;
+		this.discontinued = discontinued;
+		this.productName = productName;
+		this.quantityPerUnit = quantityPerUnit;
+		this.reorderLevel = reorderLevel;
+		this.unitPrice = unitPrice;
+		this.unitsInStock = unitsInStock;
+		this.unitsOnOrder = unitsOnOrder;
+	}
+
+
 
 	public Integer getProductId() {
 		return this.productId;
@@ -65,11 +83,11 @@ public class Product implements Serializable {
 		this.productId = productId;
 	}
 
-	public Integer getDiscontinued() {
-		return this.discontinued;
+	public Boolean isDiscontinued() {
+		return discontinued;
 	}
 
-	public void setDiscontinued(Integer discontinued) {
+	public void setDiscontinued(Boolean discontinued) {
 		this.discontinued = discontinued;
 	}
 

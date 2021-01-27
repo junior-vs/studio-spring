@@ -5,10 +5,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.vsj.northwind.data.model.Category;
+import com.vsj.northwind.data.model.Product;
 
 @Repository
-public interface CategoriesRepository extends JpaRepository<Category, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Integer>{
 
-	Optional<Category> findByCategoryName(String name);
+	Optional<Product> findByProductName(String name);
+
 }
