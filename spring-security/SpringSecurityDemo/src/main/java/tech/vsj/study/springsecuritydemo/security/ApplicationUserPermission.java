@@ -2,8 +2,10 @@ package tech.vsj.study.springsecuritydemo.security;
 
 public enum ApplicationUserPermission {
 
-  STUDENT_READ("student:read"), STUDENT_WRITE("student:write"), COURSE_READ(
-      "course:read"), COURSE_WRITE("course:read");
+  STUDENT_READ("student:read"),
+  STUDENT_WRITE("student:write"), 
+  COURSE_READ("course:read"),
+  COURSE_WRITE("course:write");
 
 
   private final String permission;
@@ -15,7 +17,5 @@ public enum ApplicationUserPermission {
   public final String getPermission() {
     return permission;
   }
-
-
 
 }
