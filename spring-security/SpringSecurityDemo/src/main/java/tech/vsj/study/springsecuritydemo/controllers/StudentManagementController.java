@@ -18,8 +18,8 @@ import tech.vsj.study.springsecuritydemo.model.Student;
 @RestController
 @RequestMapping("/management/api/v1/students")
 public class StudentManagementController {
-  
-  
+
+
   private static final Logger loggger = LoggerFactory.getLogger(StudentManagementController.class);
 
   private static final List<Student> STUDENTS = Arrays.asList(new Student(1, "James Bond"),
@@ -28,36 +28,37 @@ public class StudentManagementController {
   // hasRole('ROLE_') hasAnyRole('ROLE_') hasAuthority('permission') hasAnyAuthority('permission')
 
   @GetMapping
- // @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_TRAINEE')")
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_TRAINEE')")
   public List<Student> getAllStudents() {
     loggger.info("getAllStudents");
     return STUDENTS;
   }
-  
+
   @GetMapping("/{studendsID}")
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_TRAINEE')")
   public Student requestMethodName(@PathVariable Integer studendsID) {
     return STUDENTS.stream().filter(stu -> studendsID.equals(stu.getId())).findFirst()
         .orElseThrow(() -> new IllegalStateException("Student not found"));
   }
-  
+
 
 
   @PostMapping
- // @PreAuthorize("hasAuthority('student:write')")
+  @PreAuthorize("hasAuthority('student:write')")
   public void registerNewStudent(@RequestBody Student student) {
     loggger.info("registerNewStudent");
     loggger.info(student.toString());
   }
 
   @DeleteMapping(path = "{studentId}")
-//  @PreAuthorize("hasAuthority('student:write')")
+  @PreAuthorize("hasAuthority('student:write')")
   public void deleteStudent(@PathVariable("studentId") Integer studentId) {
     loggger.info("deleteStudent");
     loggger.info(studentId.toString());
   }
 
   @PutMapping(path = "{studentId}")
-//  @PreAuthorize("hasAuthority('student:write')")
+  @PreAuthorize("hasAuthority('student:write')")
   public void updateStudent(@PathVariable("studentId") Integer studentId,
       @RequestBody Student student) {
     loggger.info("updateStudent");

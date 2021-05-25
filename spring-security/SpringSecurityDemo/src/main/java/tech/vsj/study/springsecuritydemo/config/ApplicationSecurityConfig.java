@@ -1,16 +1,12 @@
 package tech.vsj.study.springsecuritydemo.config;
 
-import static org.springframework.http.HttpMethod.DELETE;
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
-import static org.springframework.http.HttpMethod.PUT;
-import static tech.vsj.study.springsecuritydemo.security.ApplicationUserPermission.COURSE_WRITE;
 import static tech.vsj.study.springsecuritydemo.security.ApplicationsUserRole.ADMIN;
 import static tech.vsj.study.springsecuritydemo.security.ApplicationsUserRole.ADMIN_TRAINEE;
 import static tech.vsj.study.springsecuritydemo.security.ApplicationsUserRole.STUDENT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -22,6 +18,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -38,10 +35,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     http.csrf().disable().authorizeRequests()
         .antMatchers("/", "/css/*", "/js/*").permitAll()
         .antMatchers("/api/**").hasRole(STUDENT.name())
-        .antMatchers(DELETE, MANAGEMENT_API).hasAuthority(COURSE_WRITE.getPermission())
-        .antMatchers(PUT, MANAGEMENT_API).hasAuthority(COURSE_WRITE.getPermission())
-        .antMatchers(POST, MANAGEMENT_API).hasAuthority(COURSE_WRITE.getPermission())
-        .antMatchers(GET, MANAGEMENT_API).hasAnyRole(ADMIN_TRAINEE.name(), ADMIN_TRAINEE.name())
+        /*
+         * .antMatchers(DELETE, MANAGEMENT_API).hasAuthority(COURSE_WRITE.getPermission())
+         * .antMatchers(PUT, MANAGEMENT_API).hasAuthority(COURSE_WRITE.getPermission())
+         * .antMatchers(POST, MANAGEMENT_API).hasAuthority(COURSE_WRITE.getPermission())
+         * .antMatchers(GET, MANAGEMENT_API).hasAnyRole(ADMIN_TRAINEE.name(), ADMIN_TRAINEE.name())
+         */
         .anyRequest().authenticated().and()
         .httpBasic();
   }
