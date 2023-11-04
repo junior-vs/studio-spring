@@ -16,5 +16,6 @@
 
   <modules>
     <module>football</module>
+    <module>gs-batch-processing</module>
   </modules>
 </project>
