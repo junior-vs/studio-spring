@@ -11,5 +11,7 @@
   <name>studio-spring</name>
   <modules>
     <module>football</module>
+    <module>spring-batch-lab</module>
+    <module>c</module>
   </modules>
 </project>
