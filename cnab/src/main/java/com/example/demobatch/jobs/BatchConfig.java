@@ -1,13 +1,14 @@
-package com.example.demobatch;
+package com.example.demobatch.jobs;
 
-import java.math.BigDecimal;
-
-import javax.sql.DataSource;
-
+import com.example.demobatch.model.Transacao;
+import com.example.demobatch.model.TransacaoCNAB;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.launch.support.TaskExecutorJobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemProcessor;
@@ -17,10 +18,16 @@ import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilde
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.transform.Range;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
+
+import javax.sql.DataSource;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Configuration
 public class BatchConfig {
@@ -48,8 +55,8 @@ public class BatchConfig {
 
     @Bean
     Step step(ItemReader<TransacaoCNAB> itemReader,
-            ItemProcessor<TransacaoCNAB, Transacao> itemProcessor,
-            ItemWriter<Transacao> itemWriter) {
+              ItemProcessor<TransacaoCNAB, Transacao> itemProcessor,
+              ItemWriter<Transacao> itemWriter) {
         return new StepBuilder("step", jobRepository)
                 .<TransacaoCNAB, Transacao>chunk(1000, transactionManager)
                 .reader(itemReader)
@@ -59,10 +66,11 @@ public class BatchConfig {
     }
 
     @Bean
-    FlatFileItemReader<TransacaoCNAB> itemReader() {
+    @StepScope
+    FlatFileItemReader<TransacaoCNAB> itemReader(@Value("#{jobParameters['cnabFile']}") Resource resource) {
         return new FlatFileItemReaderBuilder<TransacaoCNAB>()
                 .name("reader")
-                .resource(new FileSystemResource("files/CNAB.txt"))
+                .resource(resource)
                 .fixedLength()
                 .columns(new Range(1, 1), new Range(2, 9),
                         new Range(10, 19), new Range(20, 30),
@@ -80,10 +88,9 @@ public class BatchConfig {
     ItemProcessor<TransacaoCNAB, Transacao> itemProcessor() {
         return item -> {
             return new Transacao(null, item.tipo(),
-                    null, null,
+                    null, item.valor().divide(BigDecimal.valueOf(100), 2, RoundingMode.CEILING),
                     item.cpf(), item.cartao(),
                     null, item.donoDaLoja().trim(), item.nomeDaLoja().trim())
-                    .withValor(item.valor().divide(BigDecimal.valueOf(100)))
                     .withData(item.data())
                     .withHora(item.hora());
         };
@@ -97,5 +104,16 @@ public class BatchConfig {
                 .beanMapped()
                 .build();
     }
+
+    @Bean
+    JobLauncher jobLauncherAsync(JobRepository jobRepository) throws Exception {
+        var jobLauncher = new TaskExecutorJobLauncher();
+        jobLauncher.setJobRepository(jobRepository);
+        jobLauncher.setTaskExecutor(new SimpleAsyncTaskExecutor());
+        jobLauncher.afterPropertiesSet();
+
+        return jobLauncher;
+    }
+
 
 }

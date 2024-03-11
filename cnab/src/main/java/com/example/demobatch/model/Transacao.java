@@ -1,4 +1,4 @@
-package com.example.demobatch;
+package com.example.demobatch.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,13 +16,6 @@ public record Transacao(
                 LocalTime hora,
                 String donoDaLoja,
                 String nomeDaLoja) {
-
-        public Transacao withValor(BigDecimal valor) {
-                return new Transacao(this.id,
-                                this.tipo, this.data, valor, this.cpf,
-                                this.cartao, this.hora,
-                                this.donoDaLoja, this.nomeDaLoja);
-        }
 
         public Transacao withData(String data) throws DateTimeParseException {
                 LocalDate dataFormatada = LocalDate

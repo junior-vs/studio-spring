@@ -1,4 +1,4 @@
-package com.example.demobatch;
+package com.example.demobatch.model;
 
 import java.math.BigDecimal;
 
