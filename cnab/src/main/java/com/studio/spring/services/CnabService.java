@@ -1,4 +1,4 @@
-package com.example.demobatch.services;
+package com.studio.spring.services;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -37,7 +37,7 @@ public class CnabService {
 
         var jobParameters = new JobParametersBuilder()
                 .addJobParameter("cnab", file.getOriginalFilename(), String.class, true)
-                .addJobParameter("cnabFile", "file:" + targetLocation, String.class)
+                .addJobParameter("cnabFile", "file:" + targetLocation, String.class, false)
                 .toJobParameters();
 
 

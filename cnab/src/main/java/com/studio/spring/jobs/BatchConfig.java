@@ -1,7 +1,7 @@
-package com.example.demobatch.jobs;
+package com.studio.spring.jobs;
 
-import com.example.demobatch.model.Transacao;
-import com.example.demobatch.model.TransacaoCNAB;
+import com.studio.spring.model.Transacao;
+import com.studio.spring.model.TransacaoCNAB;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepScope;
