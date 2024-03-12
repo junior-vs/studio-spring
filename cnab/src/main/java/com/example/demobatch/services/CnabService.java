@@ -37,7 +37,7 @@ public class CnabService {
 
         var jobParameters = new JobParametersBuilder()
                 .addJobParameter("cnab", file.getOriginalFilename(), String.class, true)
-                .addJobParameter("cnabFile", "file:" + targetLocation, String.class)
+                .addJobParameter("cnabFile", "file:" + targetLocation, String.class, false)
                 .toJobParameters();
 
 
