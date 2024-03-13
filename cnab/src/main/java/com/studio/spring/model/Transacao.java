@@ -1,4 +1,4 @@
-package com.example.demobatch.model;
+package com.studio.spring.model;
 
 import org.springframework.data.annotation.Id;
 

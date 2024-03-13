@@ -1,4 +1,4 @@
-package com.example.demobatch.controllers;
+package com.studio.spring.controllers;
 
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.http.HttpStatus;
