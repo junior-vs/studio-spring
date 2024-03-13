@@ -1,7 +1,7 @@
-package com.example.demobatch.controllers;
+package com.studio.spring.controllers;
 
-import com.example.demobatch.model.TransacaoReport;
-import com.example.demobatch.services.TransacaoReportService;
+import com.studio.spring.model.TransacaoReport;
+import com.studio.spring.services.TransacaoReportService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

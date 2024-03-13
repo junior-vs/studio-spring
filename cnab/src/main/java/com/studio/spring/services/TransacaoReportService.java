@@ -1,9 +1,9 @@
-package com.example.demobatch.services;
+package com.studio.spring.services;
 
-import com.example.demobatch.model.TipoTransacao;
-import com.example.demobatch.model.Transacao;
-import com.example.demobatch.model.TransacaoReport;
-import com.example.demobatch.repositories.TransacaoReportRepository;
+import  com.studio.spring.model.TipoTransacao;
+import  com.studio.spring.model.Transacao;
+import  com.studio.spring.model.TransacaoReport;
+import  com.studio.spring.repositories.TransacaoReportRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

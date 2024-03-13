@@ -1,4 +1,4 @@
-package com.example.demobatch.model;
+package com.studio.spring.model;
 
 import java.math.BigDecimal;
 import java.util.List;

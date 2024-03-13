@@ -1,6 +1,6 @@
-package com.example.demobatch.repositories;
+package com.studio.spring.repositories;
 
-import com.example.demobatch.model.Transacao;
+import com.studio.spring.model.Transacao;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
