@@ -1,13 +1,14 @@
-package com.studio.spring.batch.springbatchlab;
+package com.studio.spring.batch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBatchLabApplication {
+public class StudioSpringBatchApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBatchLabApplication.class, args);
+		System.exit(SpringApplication.exit(SpringApplication.run(StudioSpringBatchApplication.class, args)));
 	}
+
 
 }
