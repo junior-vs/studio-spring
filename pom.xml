@@ -11,7 +11,7 @@
   <name>studio-spring</name>
   <modules>
     <module>football</module>
-    <module>studio-spring-batch</module>
+    <module>spring-learn-basic</module>
     <module>cnab</module>
   </modules>
 </project>
