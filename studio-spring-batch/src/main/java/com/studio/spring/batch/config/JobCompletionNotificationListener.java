@@ -1,4 +1,4 @@
-package com.studio.spring.batch.job;
+package com.studio.spring.batch.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

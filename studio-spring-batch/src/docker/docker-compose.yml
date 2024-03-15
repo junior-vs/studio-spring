@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+  mysqldb:
+    image: mysql:8
+    container_name: base-spring-batch
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PASSWORD}      
+      MYSQL_USER: ${USER}
+      MYSQL_DATABASE: ${DATABASE}
+      MYSQL_PASSWORD: ${PASSWORD}     
+    ports:
+      - "${PORT}:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    networks:
+      - network-mysql
+
+networks: 
+  network-mysql:
+    driver: bridge
