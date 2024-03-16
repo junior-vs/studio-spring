@@ -3,7 +3,7 @@ version: '3.5'
 services:
   mysqldb:
     image: mysql:8
-    container_name: base-spring-batch
+    container_name: firstbase-spring-batch
     environment:
       MYSQL_ROOT_PASSWORD: ${PASSWORD}      
       MYSQL_USER: ${USER}

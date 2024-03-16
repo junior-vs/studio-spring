@@ -1,4 +1,4 @@
-package com.studio.spring.batch.udemy.first;
+package com.studio.spring.batch.parimpar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,12 +20,21 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 public class BatchConfig {
+    
+        private static final Logger logger = LoggerFactory.getLogger(BatchConfig.class);
 
-    private static final Logger logger = LoggerFactory.getLogger(BatchConfig.class);
+    private final JobRepository jobRepository;
+    private final PlatformTransactionManager transactionManager;
+
+    public BatchConfig(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+        this.jobRepository = jobRepository;
+        this.transactionManager = transactionManager;
+    }
+    
 
     @Bean
-    public Job job(JobRepository jobRepository, Step step) {
-        return new JobBuilder("job2", jobRepository)
+    public Job job(Step step) {
+        return new JobBuilder("imprimeParImpar", jobRepository)
                 .start(step)
                 .incrementer(new RunIdIncrementer())
                 .build();

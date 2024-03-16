@@ -13,5 +13,6 @@
     <module>football</module>
     <module>spring-learn-basic</module>
     <module>cnab</module>
+    <module>parimpar</module>
   </modules>
 </project>
