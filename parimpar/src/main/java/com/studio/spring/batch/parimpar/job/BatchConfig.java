@@ -1,4 +1,7 @@
-package com.studio.spring.batch.udemy.first;
+package com.studio.spring.batch.parimpar.job;
+
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +15,10 @@ import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
+import org.springframework.batch.item.ItemProcessor;
+import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.function.FunctionItemProcessor;
+import org.springframework.batch.item.support.IteratorItemReader;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -23,29 +30,19 @@ public class BatchConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(BatchConfig.class);
 
+    private final JobRepository jobRepository;
+    private final PlatformTransactionManager transactionManager;
+
+    public BatchConfig(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+        this.jobRepository = jobRepository;
+        this.transactionManager = transactionManager;
+    }
+
     @Bean
-    public Job job(JobRepository jobRepository, Step step) {
-        return new JobBuilder("job2", jobRepository)
-                .start(step)
+    public Job job(Step imprimeParImparStep) {
+        return new JobBuilder("imprimeParImpar2", this.jobRepository)
+                .start(imprimeParImparStep)
                 .incrementer(new RunIdIncrementer())
                 .build();
-    }
-
-    @Bean
-    public Step step(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-        return new StepBuilder("step", jobRepository)
-                .tasklet(imprimiOlaMundo(null), transactionManager)
-                .build();
-    }
-
-    @StepScope
-    public Tasklet imprimiOlaMundo(@Value("#{jobParameters['nome']}") String nome){
-        return new Tasklet() {
-            @Override
-            public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-                logger.info(String.format("Oi, %s!", nome));
-                return RepeatStatus.FINISHED;
-            }
-        };
     }
 }

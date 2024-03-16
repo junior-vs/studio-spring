@@ -14,5 +14,6 @@
     <module>spring-learn-basic</module>
     <module>cnab</module>
     <module>parimpar</module>
+    <module>udemy-first</module>
   </modules>
 </project>
