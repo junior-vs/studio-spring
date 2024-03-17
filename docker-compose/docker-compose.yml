@@ -3,16 +3,17 @@ version: '3.5'
 services:
   mysqldb:
     image: mysql:8
-    container_name: firstbase-spring-batch
+    container_name: base-studio-spring-batch
     environment:
       MYSQL_ROOT_PASSWORD: ${PASSWORD}      
       MYSQL_USER: ${USER}
-      MYSQL_DATABASE: ${DATABASE}
       MYSQL_PASSWORD: ${PASSWORD}     
     ports:
       - "${PORT}:3306"
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql          
+      - "./scripts/schema.sql:/docker-entrypoint-initdb.d/1.sql"
+      - "./scripts/data.sql:/docker-entrypoint-initdb.d/2.sql"
     networks:
       - network-mysql
 
