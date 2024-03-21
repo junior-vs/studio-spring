@@ -25,12 +25,12 @@ public class LeituraArquivoPosicionalStepConfig {
     
     
     @Bean    
-    Step leituraArquivoLarguraFixaStep(@Qualifier("leituraArquivoPosicionalReader") ItemReader<Cliente> leituraArquivoLarguraFixaReader,
-    ItemWriter<Cliente> pseudoEscrita) {
-        return new StepBuilder("leituraArquivoPosicionalStep", this.jobRepository)
+    Step leituraArquivoLarguraFixaStep(@Qualifier("leituraArquivoPosicionalReader") ItemReader<Cliente> leituraArquivoPosicionalReader,
+    ItemWriter<Cliente> processaPseudoEscrita) {
+        return new StepBuilder("leituraArquivoLarguraFixaStep", this.jobRepository)
                 .<Cliente, Cliente>chunk(2, this.transactionManager)
-                .reader(leituraArquivoLarguraFixaReader)
-                .writer(pseudoEscrita)
+                .reader(leituraArquivoPosicionalReader)
+                .writer(processaPseudoEscrita)
                 .build();
     }
 

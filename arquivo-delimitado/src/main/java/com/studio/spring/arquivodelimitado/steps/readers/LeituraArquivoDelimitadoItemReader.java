@@ -1,17 +1,16 @@
-package com.studio.spring.batch.arquivoposicional.steps.readers;
+package com.studio.spring.arquivodelimitado.steps.readers;
 
 
 
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 
-import com.studio.spring.batch.arquivoposicional.model.Cliente;
+import com.studio.spring.arquivodelimitado.model.Cliente;
 
 
 @Configuration

@@ -16,5 +16,6 @@
     <module>parimpar</module>
     <module>udemy-first</module>
     <module>arquivo-posicional</module>
+    <module>arquivo-delimitado</module>
   </modules>
 </project>

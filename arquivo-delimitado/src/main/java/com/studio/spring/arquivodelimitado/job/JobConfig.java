@@ -1,4 +1,4 @@
-package com.studio.spring.batch.arquivoposicional.job;
+package com.studio.spring.arquivodelimitado.job;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -17,14 +17,14 @@ public class JobConfig {
         this.jobRepository = jobRepository;
     }
 
+
     @Bean
-    public Job jobLeituraArquivoPosicional(@Qualifier("leituraArquivoLarguraFixaStep") Step leituraArquivoLarguraFixaStep) {
-        return  new JobBuilder("jobLeituraArquivoPosicional", this.jobRepository)
-                .start(leituraArquivoLarguraFixaStep)
+    public Job jobLeuituraArquivoDelimitado(@Qualifier("leituraArquivoDelimitadoStep") Step leituraArquivoDelimitadoStep) {
+        return  new JobBuilder("jobLeuituraArquivoDelimitado", this.jobRepository)
+                .start(leituraArquivoDelimitadoStep)
                 .incrementer(new RunIdIncrementer())
                 .build();
         
     }
-
 }
 

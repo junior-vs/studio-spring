@@ -1,4 +1,4 @@
-package com.studio.spring.batch.arquivoposicional.model;
+package com.studio.spring.arquivodelimitado.model;
 
 import org.springframework.batch.item.file.transform.Range;
 

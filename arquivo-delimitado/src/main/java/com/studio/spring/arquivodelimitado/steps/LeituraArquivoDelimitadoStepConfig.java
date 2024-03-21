@@ -1,4 +1,4 @@
-package com.studio.spring.batch.arquivoposicional.steps;
+package com.studio.spring.arquivodelimitado.steps;
 
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.repository.JobRepository;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import com.studio.spring.batch.arquivoposicional.model.Cliente;
+import com.studio.spring.arquivodelimitado.model.Cliente;
 
 @Configuration
 public class LeituraArquivoDelimitadoStepConfig {
@@ -26,11 +26,11 @@ public class LeituraArquivoDelimitadoStepConfig {
     
     @Bean
     Step leituraArquivoDelimitadoStep(@Qualifier("leituraArquivoDelimitadoReader") ItemReader<Cliente> leituraArquivoDelimitadoReader,
-    ItemWriter<Cliente> pseudoEscrita) {
-        return new StepBuilder("leituraArquivoPosicionalStep", this.jobRepository)
+    ItemWriter<Cliente> processaPseudoEscrita) {
+        return new StepBuilder("leituraArquivoDelimitadoStep", this.jobRepository)
                 .<Cliente, Cliente>chunk(2, this.transactionManager)
                 .reader(leituraArquivoDelimitadoReader)
-                .writer(pseudoEscrita)
+                .writer(processaPseudoEscrita)
                 .build();
     }
 
