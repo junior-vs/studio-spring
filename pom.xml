@@ -15,5 +15,6 @@
     <module>cnab</module>
     <module>parimpar</module>
     <module>udemy-first</module>
+    <module>arquivo-posicional</module>
   </modules>
 </project>

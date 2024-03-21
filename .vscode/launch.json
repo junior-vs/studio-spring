@@ -1,0 +1,58 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "ArquivoPosicionalApplication",
+            "request": "launch",
+            "mainClass": "com.studio.spring.batch.arquivoposicional.ArquivoPosicionalApplication",
+            "projectName": "arquivo-posicional",
+            "args": "arquivo.delimitado.clientes=file:/files/clientes-delimitado.csv;arquivo.posicional.clientes=file:/files/clientes-posicional.txt"
+        },
+        {
+            "type": "java",
+            "name": "DemoBatchApplication",
+            "request": "launch",
+            "mainClass": "com.studio.spring.DemoBatchApplication",
+            "projectName": "cnab"
+        },
+        {
+            "type": "java",
+            "name": "FootballApplication",
+            "request": "launch",
+            "mainClass": "com.studio.spring.batch.football.FootballApplication",
+            "projectName": "football"
+        },
+        {
+            "type": "java",
+            "name": "ParimparApplication",
+            "request": "launch",
+            "mainClass": "com.studio.spring.batch.parimpar.ParimparApplication",
+            "projectName": "parimpar"
+        },
+        {
+            "type": "java",
+            "name": "StudioSpringBatchApplication",
+            "request": "launch",
+            "mainClass": "com.studio.spring.batch.StudioSpringBatchApplication",
+            "projectName": "spring-learn-basic"
+        },
+        {
+            "type": "java",
+            "name": "UdemyFirstApplication",
+            "request": "launch",
+            "mainClass": "com.studio.spring.batch.udemy.first.UdemyFirstApplication",
+            "projectName": "udemy-first"
+        }
+    ]
+}
