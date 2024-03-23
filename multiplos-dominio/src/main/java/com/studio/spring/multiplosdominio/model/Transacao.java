@@ -1,36 +1,45 @@
 package com.studio.spring.multiplosdominio.model;
 
 public class Transacao {
-	public String id;
-	public String descricao;
-	public Double valor;
+    private String id;
+    private String descricao;
+    private Double valor;
 
-	public String getId() {
-		return id;
-	}
+    public Transacao() {
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public Transacao(String id, String descricao, Double valor) {
+        this.id = id;
+        this.descricao = descricao;
+        this.valor = valor;
+    }
 
-	public String getDescricao() {
-		return descricao;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public Double getValor() {
-		return valor;
-	}
+    public String getDescricao() {
+        return descricao;
+    }
 
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-	@Override
-	public String toString() {
-		return "Transacao{" + "id='" + id + "'" + ", descricao='" + descricao + "'" + ", valor='" + valor + "'" + '}';
-	}
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    @Override
+    public String toString() {
+        return "Transacao{" + "id='" + id + "'" + ", descricao='" + descricao + "'" + ", valor='" + valor + "'" + '}';
+    }
 }

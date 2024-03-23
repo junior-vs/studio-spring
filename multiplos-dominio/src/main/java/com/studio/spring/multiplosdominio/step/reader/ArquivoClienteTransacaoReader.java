@@ -32,18 +32,31 @@ public class ArquivoClienteTransacaoReader implements ItemStreamReader<Cliente> 
     delegate.close();
   }
 
+  /**
+   * Reads a Cliente object from the delegate reader.
+   * If the current object is null, it reads the next object from the delegate.
+   * If the current object is not null, it adds all Transacao objects to the Cliente's transacoes list.
+   *
+   * @return The read Cliente object, or null if there are no more objects to read.
+   * @throws Exception If an error occurs while reading.
+   */
   @Override
   public Cliente read() throws Exception {
+    // If the current object is null, read the next object from the delegate
     if (objAtual == null)
       objAtual = delegate.read();
 
+    // Cast the current object to a Cliente
     Cliente cliente = (Cliente) objAtual;
     objAtual = null;
 
+    // If the cliente is not null, add all Transacao objects to its transacoes list
     if (cliente != null) {
       while(peek() instanceof Transacao)
         cliente.getTransacoes().add((Transacao) objAtual);
     }
+
+    // Return the read Cliente object
     return cliente;
   }
 
