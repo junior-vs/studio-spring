@@ -13,7 +13,7 @@ import org.springframework.core.io.Resource;
 @Configuration
 public class ArquivoMultiplosDominioReader {
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings("rawtypes")
     @Bean
     @StepScope
     FlatFileItemReader processa(@Value("#{jobParameters['arquivo.multiplos.clientes']}") Resource resource, LineMapper lineMapper) {

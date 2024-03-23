@@ -17,7 +17,8 @@
         <module>udemy-first</module>
         <module>arquivo-posicional</module>
         <module>arquivo-delimitado</module>
-        <module>arquivo-nao-estruturado</module>
         <module>multiplos-dominio</module>
+        <module>multiplos-dominio-multiplos-arquivos</module>
+        <module>processa-arquivo-xml</module>
     </modules>
 </project>
