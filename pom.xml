@@ -20,5 +20,7 @@
         <module>multiplos-dominio</module>
         <module>multiplos-dominio-multiplos-arquivos</module>
         <module>processa-arquivo-xml</module>
+        <module>sample-file-xml</module>
+        <module>jdbc-cursor</module>
     </modules>
 </project>
