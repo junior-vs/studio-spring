@@ -12,6 +12,7 @@ public class JdbcGameDao extends JdbcDaoSupport implements ItemWriter<Game> {
 
     private SimpleJdbcInsert insertGame;
 
+    @SuppressWarnings("null")
     @Override
     protected void initDao() throws Exception {
         super.initDao();

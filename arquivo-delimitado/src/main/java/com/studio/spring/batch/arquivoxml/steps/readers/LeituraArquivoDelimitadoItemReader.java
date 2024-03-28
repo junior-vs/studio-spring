@@ -15,6 +15,7 @@ import org.springframework.core.io.Resource;
 @Configuration
 public class LeituraArquivoDelimitadoItemReader {
 
+    @SuppressWarnings("null")
     @Bean
     @StepScope
     public FlatFileItemReader<Cliente> leituraArquivoDelimitadoReader(@Value("#{jobParameters['arquivo.delimitado.clientes']}") Resource arquivo) {

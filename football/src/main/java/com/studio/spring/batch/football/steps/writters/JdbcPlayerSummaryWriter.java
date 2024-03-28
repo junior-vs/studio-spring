@@ -18,10 +18,12 @@ public class JdbcPlayerSummaryWriter implements ItemWriter<PlayerSummary> {
             + ":interceptions, :rushes, :rushYards, :receptions, :receptionYards, :totalTd)";
     private final  NamedParameterJdbcOperations namedParameterJdbcTemplate;
 
+    @SuppressWarnings("null")
     public JdbcPlayerSummaryWriter(DataSource dataSource) {
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
+    @SuppressWarnings("null")
     @Override
     public void write(Chunk<? extends PlayerSummary> playerSummaries) throws Exception {
 

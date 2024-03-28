@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 public class JdbcCursorReaderConfig {
 
     private static final String QUERY = "select * from cliente";
+    @SuppressWarnings("null")
     @Bean
     JdbcCursorItemReader<Cliente> jdbcCursorReader(@Qualifier("appDataSource") DataSource datasource) {
         return new JdbcCursorItemReaderBuilder<Cliente>()

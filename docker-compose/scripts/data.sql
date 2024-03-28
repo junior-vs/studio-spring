@@ -7,3 +7,8 @@ INSERT INTO CUSTOMER (ID, VERSION, NAME, CREDIT) VALUES (3, 0, 'customer3', 1000
 INSERT INTO CUSTOMER (ID, VERSION, NAME, CREDIT) VALUES (4, 0, 'customer4', 100000);
 
 
+INSERT INTO cliente VALUES ("Joao", "Silva", "30", "joao@test.com");
+INSERT INTO cliente VALUES ("Maria", "Silva", "30", "maria@test.com");
+INSERT INTO cliente VALUES ("José", "Silva", "20", "jose@test.com");
+
+

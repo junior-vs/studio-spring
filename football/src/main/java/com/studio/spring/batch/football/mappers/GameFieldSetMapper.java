@@ -6,13 +6,14 @@ import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.validation.BindException;
 
 public class GameFieldSetMapper implements FieldSetMapper<Game> {
+    @SuppressWarnings("null")
     @Override
     public Game mapFieldSet(FieldSet fs) throws BindException {
         if (fs == null) {
             return null;
         }
 
-        Game game = new Game(fs.readString("id"),
+        return new Game(fs.readString("id"),
                 fs.readInt("year"),
                 fs.readString("team"),
                 fs.readInt("week"),
@@ -28,6 +29,5 @@ public class GameFieldSetMapper implements FieldSetMapper<Game> {
                 fs.readInt("receptionYards"),
                 fs.readInt("totalTd"));
 
-        return game;
     }
 }

@@ -15,10 +15,12 @@ public class JdbcPlayerWriter implements PlayerDao {
 
     private final NamedParameterJdbcOperations namedParameterJdbcTemplate;
 
+    @SuppressWarnings("null")
     public JdbcPlayerWriter(DataSource dataSource) {
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
+    @SuppressWarnings("null")
     @Override
     public void savePlayer(Player player) {
         namedParameterJdbcTemplate.update(INSERT_PLAYER, new BeanPropertySqlParameterSource(player));

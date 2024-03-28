@@ -45,6 +45,7 @@ public class BatchConfig {
         this.jobRepository = jobRepository;
     }
 
+    @SuppressWarnings("null")
     @Bean
     Job job(Step step) {
         return new JobBuilder("job", this.jobRepository)
@@ -53,6 +54,7 @@ public class BatchConfig {
                 .build();
     }
 
+    @SuppressWarnings("null")
     @Bean
     Step step(ItemReader<TransacaoCNAB> itemReader,
               ItemProcessor<TransacaoCNAB, Transacao> itemProcessor,
@@ -65,6 +67,7 @@ public class BatchConfig {
                 .build();
     }
 
+    @SuppressWarnings("null")
     @Bean
     @StepScope
     FlatFileItemReader<TransacaoCNAB> itemReader(@Value("#{jobParameters['cnabFile']}") Resource resource) {
@@ -96,6 +99,7 @@ public class BatchConfig {
         };
     }
 
+    @SuppressWarnings("null")
     @Bean
     ItemWriter<Transacao> itemWriter(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<Transacao>()
@@ -105,6 +109,7 @@ public class BatchConfig {
                 .build();
     }
 
+    @SuppressWarnings("null")
     @Bean
     JobLauncher jobLauncherAsync(JobRepository jobRepository) throws Exception {
         var jobLauncher = new TaskExecutorJobLauncher();

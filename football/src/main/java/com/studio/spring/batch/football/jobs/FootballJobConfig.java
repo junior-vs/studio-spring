@@ -39,6 +39,7 @@ public class FootballJobConfig {
         this.transactionManager = transactionManager;
     }
 
+    @SuppressWarnings("null")
     @Bean
     public Job job(Step playerLoad, Step gameLoad, Step summarizationStep) {
         return new JobBuilder("footballJob", this.jobRepository)
@@ -50,6 +51,7 @@ public class FootballJobConfig {
 
     // step 1 configuration
 
+    @SuppressWarnings("null")
     @Bean
     public Step playerLoad(FlatFileItemReader<Player> playerFlatFileItemReader, PlayerItemWriter playerItemWriter) {
         return new StepBuilder("playerLoad", this.jobRepository)
@@ -59,6 +61,7 @@ public class FootballJobConfig {
                 .build();
     }
 
+    @SuppressWarnings("null")
     @Bean
     @StepScope
     public FlatFileItemReader<Player> playerFlatFileItemReader(@Value("${player.path.file}") String pathToFile) {
@@ -78,6 +81,7 @@ public class FootballJobConfig {
 
     // step 2 configuration
 
+    @SuppressWarnings("null")
     @Bean
     public Step gameLoad(
             FlatFileItemReader<Game> gameFileItemReader, JdbcGameDao gameWriter) {
@@ -87,6 +91,7 @@ public class FootballJobConfig {
                 .build();
     }
 
+    @SuppressWarnings("null")
     @Bean
     @StepScope
     public FlatFileItemReader<Game> gameFileItemReader(@Value("${game.path.file}") String pathToFile) {
@@ -99,6 +104,7 @@ public class FootballJobConfig {
                 .build();
     }
 
+    @SuppressWarnings("null")
     @Bean
     public JdbcGameDao gameWriter(DataSource dataSource) {
         JdbcGameDao jdbcGameDao = new JdbcGameDao();
@@ -107,6 +113,7 @@ public class FootballJobConfig {
     }
 
     //step 3 configuration
+    @SuppressWarnings("null")
     @Bean
     public Step summarizationStep(JdbcCursorItemReader<PlayerSummary> playerSummarizationSource, JdbcPlayerSummaryWriter summaryWriter) {
         return new StepBuilder("summarizationStep", this.jobRepository)
@@ -117,6 +124,7 @@ public class FootballJobConfig {
                 .build();
     }
 
+    @SuppressWarnings("null")
     @Bean
     public JdbcCursorItemReader<PlayerSummary> playerSummarizationSource(DataSource dataSource) {
         String sql = """

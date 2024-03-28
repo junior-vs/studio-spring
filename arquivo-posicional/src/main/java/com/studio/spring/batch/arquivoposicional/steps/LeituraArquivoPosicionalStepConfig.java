@@ -24,6 +24,7 @@ public class LeituraArquivoPosicionalStepConfig {
     }
     
     
+    @SuppressWarnings("null")
     @Bean    
     Step leituraArquivoLarguraFixaStep(@Qualifier("leituraArquivoPosicionalReader") ItemReader<Cliente> leituraArquivoPosicionalReader,
     ItemWriter<Cliente> processaPseudoEscrita) {

@@ -16,6 +16,7 @@ import com.studio.spring.batch.arquivoposicional.model.Cliente;
 @Configuration
 public class LeituraArquivoPosicionalItemReader {
 
+    @SuppressWarnings("null")
     @Bean
     @StepScope
     public FlatFileItemReader<Cliente> leituraArquivoPosicionalReader(@Value("#{jobParameters['arquivoClientes']}") Resource arquivo) {

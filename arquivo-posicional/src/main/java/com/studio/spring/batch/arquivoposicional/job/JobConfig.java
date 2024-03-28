@@ -17,6 +17,7 @@ public class JobConfig {
         this.jobRepository = jobRepository;
     }
 
+    @SuppressWarnings("null")
     @Bean
     public Job jobLeituraArquivoPosicional(@Qualifier("leituraArquivoLarguraFixaStep") Step leituraArquivoLarguraFixaStep) {
         return  new JobBuilder("jobLeituraArquivoPosicional", this.jobRepository)

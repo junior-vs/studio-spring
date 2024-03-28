@@ -24,6 +24,7 @@ public class LeituraArquivoDelimitadoStepConfig {
     }
 
     
+    @SuppressWarnings("null")
     @Bean
     Step leituraArquivoDelimitadoStep(@Qualifier("leituraArquivoDelimitadoReader") ItemReader<Cliente> leituraArquivoDelimitadoReader,
     ItemWriter<Cliente> processaPseudoEscrita) {

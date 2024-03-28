@@ -29,6 +29,7 @@ public class CnabService {
     }
 
 
+    @SuppressWarnings("null")
     public void upload(MultipartFile file) throws Exception {
 
         var fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));

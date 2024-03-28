@@ -21,13 +21,15 @@ public class StepConfig {
         this.transactionManager = transactionManager;
     }
 
-    @SuppressWarnings("null")
     @Bean
-    Step jdbcCursorReaderStep(ItemReader<Cliente> jdbcCursorReader, ItemWriter<Cliente> jdbcCursorWriter) {
-        return new StepBuilder("jdbcCursorReaderStep", this.jobRepository)
+    Step jdbcPagingReaderStep(ItemReader<Cliente> jdbcCursorReader, ItemWriter<Cliente> jdbcCursorWriter) {
+        return new StepBuilder("jdbcPagingReaderStep", this.jobRepository)
                 .<Cliente, Cliente>chunk(10, this.transactionManager)
                 .reader(jdbcCursorReader)
                 .writer(jdbcCursorWriter)
+                .faultTolerant()
+                .skip(Exception.class)
+                .skipLimit(2)
                 .build();
     }
 }

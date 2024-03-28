@@ -6,6 +6,7 @@ import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.validation.BindException;
 
 public class PlaFieldSetMapper implements FieldSetMapper<Player> {
+    @SuppressWarnings("null")
     @Override
     public Player mapFieldSet(FieldSet fs) throws BindException {
 
