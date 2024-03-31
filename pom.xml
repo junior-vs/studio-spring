@@ -1,28 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.studio.spring</groupId>
-    <artifactId>studio-spring</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>studio-spring</name>
-    <modules>
-        <module>football</module>
-        <module>spring-learn-basic</module>
-        <module>cnab</module>
-        <module>parimpar</module>
-        <module>udemy-first</module>
-        <module>arquivo-posicional</module>
-        <module>arquivo-delimitado</module>
-        <module>multiplos-dominio</module>
-        <module>multiplos-dominio-multiplos-arquivos</module>
-        <module>processa-arquivo-xml</module>
-        <module>sample-file-xml</module>
-        <module>jdbc-cursor</module>
-        <module>jdbc-paging</module>
-        <module>demonstrativo-orcamentario</module>
-    </modules>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.studio.spring</groupId>
+  <artifactId>studio-spring</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>studio-spring</name>
+
+  <modules>
+    <module>batch-old</module>
+  </modules>
+
 </project>

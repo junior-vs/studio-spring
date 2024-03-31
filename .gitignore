@@ -1,7 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/java,maven,gradle,eclipse,visualstudiocode,intellij+all
-# Edit at https://www.toptal.com/developers/gitignore?templates=java,maven,gradle,eclipse,visualstudiocode,intellij+all
-
-data
+# Created by https://www.toptal.com/developers/gitignore/api/java,mavensmate,gradle,visualstudiocode,eclipse,intellij+all
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,mavensmate,gradle,visualstudiocode,eclipse,intellij+all
 
 ### Eclipse ###
 .metadata
@@ -183,24 +181,23 @@ fabric.properties
 hs_err_pid*
 replay_pid*
 
-### Maven ###
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# https://github.com/takari/maven-wrapper#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
+### MavensMate ###
+#Sublime Text exclusions
+*.sublime-workspace
+*.sublime-project
+*.sublime-settings
 
-# Eclipse m2e generated files
-# Eclipse Core
-.project
-# JDT-specific (Eclipse Java Development Tools)
-.classpath
+#MavensMate exclusions
+config/*
+mm.log
+
+#OPTIONAL Apex scripts exclusion
+# - Rule 1 excludes the contents of the apex-scripts folder
+# - Rule 2 adds in NAMED apex scripts
+# Together: excludes scripts run though MavensMate’s
+#  execute anonymous functionality, while keeping named scripts
+apex-scripts/*
+!apex-scripts/*.cls
 
 ### VisualStudioCode ###
 .vscode/*
@@ -240,10 +237,14 @@ gradle-app.setting
 
 # Eclipse Gradle plugin generated files
 # Eclipse Core
+.project
 # JDT-specific (Eclipse Java Development Tools)
+.classpath
 
 ### Gradle Patch ###
 # Java heap dump
 *.hprof
 
-# End of https://www.toptal.com/developers/gitignore/api/java,maven,gradle,eclipse,visualstudiocode,intellij+all
+# End of https://www.toptal.com/developers/gitignore/api/java,mavensmate,gradle,visualstudiocode,eclipse,intellij+all
+
+/data/*
