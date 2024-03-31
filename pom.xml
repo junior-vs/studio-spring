@@ -23,5 +23,6 @@
         <module>sample-file-xml</module>
         <module>jdbc-cursor</module>
         <module>jdbc-paging</module>
+        <module>demonstrativo-orcamentario</module>
     </modules>
 </project>
