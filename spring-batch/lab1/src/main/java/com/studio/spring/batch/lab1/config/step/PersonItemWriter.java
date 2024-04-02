@@ -14,7 +14,7 @@ public class PersonItemWriter {
     JdbcBatchItemWriter<Person> personWriter(@Qualifier("dataSourceBusiness") DataSource dataSourceBusiness) {
 
         return new JdbcBatchItemWriterBuilder<Person>()
-                .sql("INSERT INTO people (first_name, last_name) VALUES (:firstName, :lastName)")
+                .sql("INSERT INTO business.PEOPLE (first_name, last_name) VALUES (:firstName, :lastName)")
                 .dataSource(dataSourceBusiness)
                 .beanMapped()
                 .build();

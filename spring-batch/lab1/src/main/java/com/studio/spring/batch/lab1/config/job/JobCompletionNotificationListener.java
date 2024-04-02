@@ -30,7 +30,8 @@ public class JobCompletionNotificationListener implements JobExecutionListener {
             case BatchStatus.COMPLETED:
                 logger.info("!!! JOB FINISHED! Time to verify the results");
                 jdbcTemplate
-                        .query("SELECT first_name, last_name FROM people", new DataClassRowMapper<>(Person.class))
+                        .query("SELECT first_name, last_name FROM business.PEOPLE",
+                                new DataClassRowMapper<>(Person.class))
                         .forEach(person -> logger.info("Found <{{}}> in the database.", person));
                 break;
             case BatchStatus.FAILED:
